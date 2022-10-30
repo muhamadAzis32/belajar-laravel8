@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/tasks/{param}', [TaskController::class, 'show']);
+Route::post('/tasks', [TaskController::class, 'store']);
+Route::patch('/tasks/{key}',[TaskController::class, 'update']);
+Route::delete('/tasks/{key}',[TaskController::class, 'destroy']);
+
 
 Route::get('/about', function () {
     return view('about');
@@ -42,36 +48,6 @@ Route::get('/debug', function () {
     // ddd(request());
 });
 
-$taskList = [
-    'first' => 'Sleep',
-    'second' => 'Eat',
-    'thirt' => 'Work',
-];
 
-// GET
-Route::get('/tasks', [TaskController::class, 'index']);
 
-// GET BY PARAM
-Route::get('/tasks/{param}', [TaskController::class, 'show']);
 
-// // POST
-// Route::post('/tasks', function () use ($taskList) {
-//     // return request()->all();
-//     $taskList[request()->label] = request()->task;
-
-//     return $taskList;
-// });
-
-// // PUT
-// Route::patch('/tasks/{key}', function ($key) use ($taskList) {
-//     $taskList[$key] = request()->task;
-
-//     return $taskList;
-// });
-
-// // DELETE
-// Route::delete('/tasks/{key}', function ($key) use ($taskList) {
-//     unset($taskList[$key]);
-
-//     return $taskList;
-// });

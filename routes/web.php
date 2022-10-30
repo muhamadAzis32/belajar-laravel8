@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Routing\Route as ComponentRoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,44 +12,46 @@ use Symfony\Component\Routing\Route as ComponentRoutingRoute;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [HomeController::class, 'index']);
+
+
 
 Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/hello', function(){
-    $dataArray =[
-        'message' => 'Hello, Word'
+Route::get('/hello', function () {
+    $dataArray = [
+        'message' => 'Hello, Word',
     ];
 
     return response()->json($dataArray);
 });
 
-Route::get('/debug', function(){
-    $dataArray =[
-        'message' => 'Hello, Word'
+Route::get('/debug', function () {
+    $dataArray = [
+        'message' => 'Hello, Word',
     ];
 
     dd($dataArray);
     // ddd(request());
 });
 
-
-
-$taskList =[
+$taskList = [
     'first' => 'Sleep',
     'second' => 'Eat',
-    'thirt' => 'Work'
+    'thirt' => 'Work',
 ];
 
 // GET
 Route::get('/tasks', function () use ($taskList) {
-    if(request()->search){
+    if (request()->search) {
         return $taskList[request()->search];
     }
     return $taskList;
@@ -82,5 +83,3 @@ Route::delete('/tasks/{key}', function ($key) use ($taskList) {
 
     return $taskList;
 });
-
-

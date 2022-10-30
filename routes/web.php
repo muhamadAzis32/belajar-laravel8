@@ -50,6 +50,9 @@ $taskList =[
 
 // GET
 Route::get('/tasks', function () use ($taskList) {
+    if(request()->search){
+        return $taskList[request()->search];
+    }
     return $taskList;
 });
 

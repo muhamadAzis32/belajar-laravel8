@@ -62,4 +62,11 @@ Route::get('/tasks/{param}', function ($param) use ($taskList) {
 });
 
 
+// POST
+Route::post('/tasks', function () use ($taskList) {
+    // return request()->all();
+    $taskList[request()->label] = request()->task;
+
+    return $taskList;
+});
 

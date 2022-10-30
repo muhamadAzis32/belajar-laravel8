@@ -23,11 +23,19 @@ Route::get('/about', function () {
     return view('about');
 });
 
-
 Route::get('/hello', function(){
     $dataArray =[
         'message' => 'Hello, Word'
     ];
 
     return response()->json($dataArray);
+});
+
+Route::get('/debug', function(){
+    $dataArray =[
+        'message' => 'Hello, Word'
+    ];
+
+    dd($dataArray);
+    // ddd(request());
 });

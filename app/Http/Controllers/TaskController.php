@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
-    private $taskList = [
-        'first' => 'Sleep',
-        'second' => 'Eat',
-        'thirt' => 'Work',
-    ];
-
     public function index(Request $request)
     {
         if ($request->search) {
@@ -22,6 +16,7 @@ class TaskController extends Controller
             return $tasks;
         }
         $tasks = DB::table('tasks')->get();
+
         return $tasks;
     }
 
@@ -41,16 +36,21 @@ class TaskController extends Controller
         return 'Success';
     }
 
-    public function update(Request $request, $key)
+    public function update(Request $request, $id)
     {
-        $this->taskList[$key] = $request->task;
-        return $this->taskList;
+        DB::table('tasks')->where('id', $id)->update([
+            'task' => $request->task,
+            'user' => $request->user,
+        ]);
+
+        return 'Success';
     }
 
-    public function destroy($key)
+    public function destroy($id)
     {
-        unset($this->taskList[$key]);
-        return $this->taskList;
+        DB::table('tasks')->where('id', $id)->delete();
+
+        return 'Success';
     }
 
 }

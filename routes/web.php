@@ -61,7 +61,6 @@ Route::get('/tasks/{param}', function ($param) use ($taskList) {
     return $taskList[$param];
 });
 
-
 // POST
 Route::post('/tasks', function () use ($taskList) {
     // return request()->all();
@@ -70,3 +69,9 @@ Route::post('/tasks', function () use ($taskList) {
     return $taskList;
 });
 
+// PUT
+Route::patch('/tasks/{key}', function ($key) use ($taskList) {
+    $taskList[$key] = request()->task;
+
+    return $taskList;
+});

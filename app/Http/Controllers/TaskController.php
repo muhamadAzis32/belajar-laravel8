@@ -16,14 +16,19 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         if ($request->search) {
-            return $this->taskList[$request->search];
+            $tasks = DB::table('tasks')
+                ->where('task', 'LIKE', "%$request->search%")
+                ->get();
+            return $tasks;
         }
-        return $this->taskList;
+        $tasks = DB::table('tasks')->get();
+        return $tasks;
     }
 
-    public function show($param)
+    public function show($id)
     {
-        return $this->taskList[$param];
+        $task = DB::table('tasks')->where('id', $id)->first();
+        ddd($task);
     }
 
     public function store(Request $request)

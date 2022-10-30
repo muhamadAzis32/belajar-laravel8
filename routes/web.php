@@ -52,9 +52,7 @@ $taskList = [
 Route::get('/tasks', [TaskController::class, 'index']);
 
 // GET BY PARAM
-Route::get('/tasks/{param}', function ($param) use ($taskList) {
-    return $taskList[$param];
-});
+Route::get('/tasks/{param}', [TaskController::class, 'show']);
 
 // // POST
 // Route::post('/tasks', function () use ($taskList) {

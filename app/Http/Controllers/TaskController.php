@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\task;
+
 class TaskController extends Controller
 {
     public function index(Request $request)
@@ -14,8 +16,13 @@ class TaskController extends Controller
                 ->get();
             return $tasks;
         }
+
         $tasks = Task::all();
-        return $tasks;
+
+        return view('task.index', [
+            'data' => $tasks,
+        ]);
+
     }
 
     public function create()

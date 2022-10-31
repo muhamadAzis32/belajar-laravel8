@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Http\Request;
-
 use function GuzzleHttp\Promise\task;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -13,16 +12,14 @@ class TaskController extends Controller
     {
         if ($request->search) {
             $tasks = Task::where('task', 'LIKE', "%$request->search%")
-                ->get();
+                ->paginate(3);
             return $tasks;
         }
-
-        $tasks = Task::all();
+        $tasks = Task::paginate(3);
 
         return view('task.index', [
             'data' => $tasks,
         ]);
-
     }
 
     public function create()
@@ -37,7 +34,7 @@ class TaskController extends Controller
             'user' => $request->user,
         ]);
 
-        return 'Success';
+        return redirect('/tasks');
     }
 
     public function show($id)

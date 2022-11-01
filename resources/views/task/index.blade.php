@@ -15,8 +15,11 @@
                     </div>
                     <div class="col-10 mb-1 small">{{ $x->user }}</div>
                     <div class="group-action">
-                        <a href="#" class="badge bg-info text-white">edit</a>
-                        <a href="#" class="badge bg-danger text-white">delete</a>
+                        <form action="{{ url("tasks/$x->id") }}" method="post">
+                            @csrf @method('DELETE')
+                            <a href="{{ url("/tasks/$x->id/edit") }}" class="badge bg-info text-white">edit</a>
+                            <button type="submit" class="badge bg-danger text-white">delete</button>
+                        </form>
                     </div>
                 </div>
             </div>

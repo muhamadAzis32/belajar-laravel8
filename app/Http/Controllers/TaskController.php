@@ -29,6 +29,11 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'task' => ['required'],
+            'user' => ['required'],
+        ]);
+
         Task::create([
             'task' => $request->task,
             'user' => $request->user,
@@ -45,7 +50,8 @@ class TaskController extends Controller
 
     public function edit($id)
     {
-        return view('task.edit');
+        $task = Task::find($id);
+        return view('task.edit', compact('task'));
     }
 
     public function update(Request $request, $id)
@@ -57,7 +63,7 @@ class TaskController extends Controller
             'user' => $request->user,
         ]);
 
-        return 'Success';
+        return redirect('/tasks');
     }
 
     public function destroy($id)
@@ -65,7 +71,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
-        return 'Success';
+        return redirect('/tasks');
     }
 
 }

@@ -2,8 +2,8 @@
 
 @section('main')
     <div class="mt-5 mx-auto" style="width: 380px">
-        
-        @if ($errors->any())
+
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -11,7 +11,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif --}}
 
         <div class="card">
             <div class="card-body">
@@ -19,11 +19,21 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">User</label>
-                        <input name="user" type="text" class="form-control">
+                        <input name="user" type="text" class="form-control" value="{{ old('user') }}">
+                        <span class="text-danger">
+                            @error('user')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Task</label>
-                        <textarea name="task" class="form-control" id="" rows="3"></textarea>
+                        <textarea name="task" class="form-control" id="" rows="3">{{ old('task') }}</textarea>
+                        <span class="text-danger">
+                            @error('task')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

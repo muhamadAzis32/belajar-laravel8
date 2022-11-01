@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Task</label>
-                        <textarea name="task" class="form-control" id="" rows="3">{{ old('user', $task->task) }}</textarea>
+                        <textarea name="task" class="form-control" id="" rows="3">{{ old('task', $task->task) }}</textarea>
                         <span class="text-danger">
                             @error('task')
                                 {{ $message }}

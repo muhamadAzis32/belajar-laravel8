@@ -24,7 +24,7 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'task' => ['required'],
+            'task' => ['required', 'unique:tasks'],
             'user' => ['required'],
         ];
     }
@@ -34,7 +34,7 @@ class TaskRequest extends FormRequest
         return [
             'required' => 'isian : attribute harus di isi',
             'user.required' => 'nama pengguna harus di isi',
-            'task.required' => 'task harus di isi'
+            'task.required' => 'task harus di isi',
         ];
     }
 }

@@ -36,7 +36,7 @@ class TaskController extends Controller
         //     'user' => ['required'],
         // ]);
 
-        Task::create([
+        Testing::create([
             'task' => $request->task,
             'user' => $request->user,
         ]);

@@ -28,7 +28,7 @@
                         <label for="" class="form-label">Password </label>
                         <input name="password" type="password" class="form-control" value="{{ old('password') }}">
                         <span class="text-danger">
-                            @error('password')  
+                            @error('password')
                                 {{ $message }}
                             @enderror
                         </span>

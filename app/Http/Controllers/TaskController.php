@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
+use App\Models\Testing;
 use Illuminate\Routing\Controller;
 
 class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->search) {
-            $tasks = Task::where('task', 'LIKE', "%$request->search%")
-                ->paginate(3);
-            return $tasks;
-        }
-        $tasks = Task::paginate(3);
+        // if ($request->search) {
+        //     $tasks = Task::where('task', 'LIKE', "%$request->search%")
+        //         ->paginate(3);
+        //     return $tasks;
+        // }
+        $tasks = Testing::paginate(3);
 
         return view('task.index', [
             'data' => $tasks,

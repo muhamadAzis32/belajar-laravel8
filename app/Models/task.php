@@ -10,7 +10,7 @@ class Task extends Model
     use HasFactory;
 
     protected $table = 'tasks';
-    // protected $fillable = []; -> Mendefinisan apa saja yang akan di isi
+    protected $fillable = ['user','task']; //-> Mendefinisan apa saja yang akan di isi
 
-    protected $guarded = []; //-> Memilih apa aja yang tidak boleh isi
+    //protected $guarded = []; //-> Memilih apa aja yang tidak boleh isi
 }

@@ -4,7 +4,7 @@
     <div class="mt-5 mx-auto" style="width: 380px">
         <div class="card">
             <div class="card-body">
-                <form action="{{ url('login') }}" method="POST">
+                <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Email </label>
@@ -25,6 +25,7 @@
                         </span>
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
+                    <a href="{{ route('password.request') }}" class="btn btn-link">Forgot your password?</a>
                 </form>
             </div>
         </div>
